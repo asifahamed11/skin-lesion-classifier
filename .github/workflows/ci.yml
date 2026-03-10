@@ -45,42 +45,7 @@ jobs:
           print("All core imports OK")
           EOF
 
-      - name: Health-check Flask app (no model files)
+      - name: Run route tests
         run: |
           pip install pytest
-          python - <<'EOF'
-          import os, sys
-          os.environ["TESTING"] = "1"
-          # Patch load_model so no real models are needed in CI
-          import unittest.mock as mock
-          import importlib
-
-          dummy_model = mock.MagicMock()
-          dummy_model.inputs = [mock.MagicMock()]
-          with mock.patch("tensorflow.keras.models.load_model", return_value=dummy_model), \
-               mock.patch("builtins.open", mock.mock_open(read_data=b"")), \
-               mock.patch("pickle.load", return_value=mock.MagicMock(classes_=["male","female","unknown"])):
-              import app as flask_app
-              client = flask_app.app.test_client()
-
-              # /health should always return 200
-              resp = client.get("/health")
-              assert resp.status_code == 200, f"Expected 200, got {resp.status_code}"
-              data = resp.get_json()
-              assert "status" in data
-              print("  OK  /health")
-
-              # /api/classes should return 200
-              resp2 = client.get("/api/classes")
-              assert resp2.status_code == 200, f"Expected 200, got {resp2.status_code}"
-              data2 = resp2.get_json()
-              assert "classes" in data2
-              print("  OK  /api/classes")
-
-              # / should return 200
-              resp3 = client.get("/")
-              assert resp3.status_code == 200, f"Expected 200, got {resp3.status_code}"
-              print("  OK  /")
-
-          print("All route checks passed")
-          EOF
+          pytest tests/ -v
