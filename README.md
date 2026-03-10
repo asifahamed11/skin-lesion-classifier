@@ -1,6 +1,6 @@
 # SkinCancer AI 🔬
 
-[![CI](https://github.com/asifahamed11/canser-Emtiaz/actions/workflows/ci.yml/badge.svg)](https://github.com/asifahamed11/canser-Emtiaz/actions/workflows/ci.yml)
+[![CI](https://github.com/asifahamed11/skin-lesion-classifier/actions/workflows/ci.yml/badge.svg)](https://github.com/asifahamed11/skin-lesion-classifier/actions/workflows/ci.yml)
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/)
 [![TensorFlow 2.20](https://img.shields.io/badge/TensorFlow-2.20-orange.svg)](https://www.tensorflow.org/)
 [![Flask](https://img.shields.io/badge/Flask-3.x-green.svg)](https://flask.palletsprojects.com/)
@@ -24,6 +24,8 @@ A deep-learning web application that classifies skin lesion images into **7 HAM1
 ---
 
 ## Demo
+
+![SkinCancer AI — full analysis screenshot](static/screenshots/demo.png)
 
 |             Upload & Analyze             |                    Result Report                    |
 | :--------------------------------------: | :-------------------------------------------------: |
@@ -78,8 +80,8 @@ skincancer-ai/
 ### 1 — Clone & install
 
 ```bash
-git clone https://github.com/asifahamed11/canser-Emtiaz.git
-cd canser-Emtiaz
+git clone https://github.com/asifahamed11/skin-lesion-classifier.git
+cd skin-lesion-classifier
 
 python -m venv .venv
 # Windows:
@@ -201,7 +203,7 @@ Returns all supported lesion classes plus available form options.
 
 ## Model Architecture
 
-The main model is a **MobileNet** (ImageNet-pretrained) fine-tuned in two phases on the [HAM10000 dataset](https://www.kaggle.com/datasets/kmader/skin-lesion-analysis-toward-melanoma-detection):
+The main model is a **MobileNet** (ImageNet-pretrained) fine-tuned in two phases on the [Skin Cancer Dataset](https://www.kaggle.com/datasets/farjanakabirsamanta/skin-cancer-dataset):
 
 | Phase   | Description                                        |
 | ------- | -------------------------------------------------- |
@@ -243,7 +245,7 @@ Distributed under the [MIT License](LICENSE).
 
 ## Acknowledgements
 
-- [HAM10000 Dataset](https://www.kaggle.com/datasets/kmader/skin-lesion-analysis-toward-melanoma-detection) — Tschandl et al., 2018
+- [Skin Cancer Dataset](https://www.kaggle.com/datasets/farjanakabirsamanta/skin-cancer-dataset) — Farjana Kabir Samanta, Kaggle
 - [MobileNet](https://arxiv.org/abs/1704.04861) — Howard et al., Google
 - [TensorFlow / Keras](https://www.tensorflow.org/)
 - [Chart.js](https://www.chartjs.org/) — probability distribution chart
